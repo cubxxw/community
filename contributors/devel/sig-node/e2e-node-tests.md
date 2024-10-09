@@ -96,7 +96,7 @@ provided by the default image.
 List the available test images using gcloud.
 
 ```sh
-make test-e2e-node LIST_IMAGES=true
+gcloud compute images list --project="cos-cloud" --no-standard-images --filter="name ~ 'cos-beta.*'"
 ```
 
 This will output a list of the available images for the default image project.
@@ -113,6 +113,14 @@ This is useful if you have an host instance running already and want to run the 
 
 ```sh
 make test-e2e-node REMOTE=true HOSTS="<comma-separated-list-of-hostnames>"
+```
+
+## Run tests against a different network and subnet (not the default)
+
+This is useful if you want to run tests on a non-default network and subnet.
+
+```sh
+make test-e2e-node REMOTE=true NETWORK="<network> SUBNET="<subnet>"
 ```
 
 ## Delete instance after tests run
